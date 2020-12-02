@@ -16,27 +16,39 @@
 
 > Take a screenshot of the stats page of HAProxy at http://192.168.42.42:1936. You should see your backend nodes. It should be really similar to the screenshot of the previous task.
 
-![](doc/task1/haproxy_stats.png)
+
 
 > Describe your difficulties for this task and your understanding of what is happening during this task. Explain in your own words why are we installing a process supervisor. Do not hesitate to do more research and to find more articles on that topic to illustrate the problem.
 
-As stated in the given :grin:, this task solves the issue presented in the question [M5]. To answer the question itself, the solution pre-task 1 couldn't run multiple processes in a single container. This is due to the Docker mantras "one process per container", so the containers don't have a process supervisor (which allows us to run multiple processes). To fix the issue, we simply need to install a process supervisor. In this case, we've installed S6 but there are other solutions (e.g. init.d, systemd, etc...).
 
-Our understanding is that the container will run `S6` as it's main and only process **but** if, wish to add extra processes, we will simply need to add them as a `S6` service (i.e. place their run script in `services.d`) and then they will be run by `S6` as child processes.
 
 ## Task 2: Add a tool to manage membership in the web server cluster
 
 > Provide the docker log output for each of the containers: `ha`, `s1` and `s2`. You need to create a folder `logs` in your repository to store the files separately from the lab report. For each lab task create a folder and name it using the task number. No need to create a folder when there are no logs.
 
-
+You can See in file **ROOT/logs/task2/** for the different logs.
 
 > Give the answer to the question about the existing problem with the current solution.
 
+The main problem is that the service `serf` on our HA Proxy, doesn't know what to do with the newbie of the cluster. Some scripts are missing to have a working system. 
 
+
+In fact we can see in the logs that we have an event  **member-join** but the relative script **member-join.sh** is missing (as we can see below). And with no behavior on a **member-join**, the Ha proxy doesn't send an acks to new member.  The Attempt to connect, block the Ha proxy and it cause a timeout error for the following error. 
+
+```sh
+2020/12/02 16:41:52 [INFO] agent: Received event: member-join
+2020/12/02 16:41:52 [ERR] agent: Error invoking script '/serf-handlers/member-join.sh': exit status 127
+```
 
 > Give an explanation on how `Serf` is working. Read the official website to get more details about the `GOSSIP` protocol used in `Serf`. Try to find other solutions that can be used to solve similar situations where we need some auto-discovery mechanism.
 
+Serf Maintains a cluster of memberships lists, for a load balancer in our case, each time a node comes online or goes offline serf notify the load balancer. It work with the Gossip protocol.
 
+Gossip protocol is used to broadcast messages to the cluster in bidirectional mode. It's a peer-to-peer protocol that spread between machine on the cluster. It avoids single point of failure. 
+
+It means that the nodes will keep updated about the status of other nodes. When a new node join the cluster, it will be added to the list and her health will be checked by the other nodes.
+
+About some other solutions we can see on this page  [Here]: https://www.serf.io/intro/vs-zookeeper.html
 
 
 
