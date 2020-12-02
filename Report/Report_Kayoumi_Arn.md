@@ -22,6 +22,10 @@
 
 
 
+![](doc/task1/S6-diagram.jpg)
+
+> Note: In this simple diagram, we can see that `S6` is the main process of the container and that it has 3 children (i.e. 3 extra processes are executed)
+
 ## Task 2: Add a tool to manage membership in the web server cluster
 
 > Provide the docker log output for each of the containers: `ha`, `s1` and `s2`. You need to create a folder `logs` in your repository to store the files separately from the lab report. For each lab task create a folder and name it using the task number. No need to create a folder when there are no logs.
