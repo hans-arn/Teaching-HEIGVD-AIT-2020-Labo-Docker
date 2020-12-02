@@ -20,7 +20,9 @@
 
 > Describe your difficulties for this task and your understanding of what is happening during this task. Explain in your own words why are we installing a process supervisor. Do not hesitate to do more research and to find more articles on that topic to illustrate the problem.
 
+As stated in the given :grin:, this task solves the issue presented in the question [M5]. To answer the question itself, the solution pre-task 1 couldn't run multiple processes in a single container. This is due to the Docker mantras "one process per container", so the containers don't have a process supervisor (which allows us to run multiple processes). To fix the issue, we simply need to install a process supervisor. In this case, we've installed S6 but there are other solutions (e.g. init.d, systemd, etc...).
 
+Our understanding is that the container will run `S6` as it's main and only process **but** if, wish to add extra processes, we will simply need to add them as a `S6` service (i.e. place their run script in `services.d`) and then they will be run by `S6` as child processes.
 
 ## Task 2: Add a tool to manage membership in the web server cluster
 
