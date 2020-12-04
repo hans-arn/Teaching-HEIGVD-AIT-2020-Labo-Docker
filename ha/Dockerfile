@@ -13,8 +13,8 @@ RUN curl -sSLo /tmp/s6.tar.gz https://github.com/just-containers/s6-overlay/rele
   && rm -f /tmp/s6.tar.gz
 
 # Install serf (for decentralized cluster membership: https://www.serf.io/)
-RUN mkdir /opt/bin \
-    && curl -sSLo /tmp/serf.gz https://releases.hashicorp.com/serf/0.8.2/serf_0.8.2_linux_amd64.zip \
+RUN mkdir -p /opt/bin 
+RUN curl -sSLo /tmp/serf.gz https://releases.hashicorp.com/serf/0.8.2/serf_0.8.2_linux_amd64.zip \
     && gunzip -c /tmp/serf.gz > /opt/bin/serf \
     && chmod 755 /opt/bin/serf \
     && rm -f /tmp/serf.gz
@@ -31,7 +31,10 @@ RUN chmod +x /etc/services.d/ha/run
 COPY services/serf /etc/services.d/serf
 RUN chmod +x /etc/services.d/serf/run
 
-# TODO: [Serf] Copy events handler scripts
+# Copy events handler scripts
+RUN mkdir -p /serf-handlers
+COPY scripts/* /serf-handlers/
+RUN chmod +x /serf-handlers/*
 
 # Copy the haproxy and syslog config
 COPY config/haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
