@@ -162,21 +162,21 @@ $ docker inspect --format='{{json .NetworkSettings.Networks}}' ha
 >
 > In addition, provide a log file containing the output of the `docker ps` console and another file (per container) with `docker inspect <container>`. Four files are expected.
 
-
+You can see in the **/logs/task5/1** folder. The file's names describe the different steps.
 
 > Provide the list of files from the `/nodes` folder inside the `ha` container. One file expected with the command output.
 
+You can see in the **/logs/task5/2** folder. We have add the content of each file in the `nodes` folder.
 
-
-> Provide the configuration file after you stopped one container and the list of nodes present in the `/nodes` folder. One file expected with the command output. Two files are expected.
+>  Provide the configuration file after you stopped one container and the list of nodes present in the `/nodes` folder. One file expected with the command output. Two files are expected.
 >
 > In addition, provide a log file containing the output of the `docker ps` console. One file expected.
 
-
+We have decided to stop the `Server 2`. You can see in the **/logs/task5/3** folder for all the files.
 
 > (Optional:) Propose a different approach to manage the list of backend nodes. You do not need to implement it. You can also propose your own tools or the ones you discovered online. In that case, do not forget to cite your references.
 
-
+We can think in the same way as [this repo](https://github.com/itzg/haproxy-gen). When one event triggered, join or leave, we run the command to generate a new haproxy.cfg on the fly. 
 
 ## Task 6: Make the load balancer automatically reload the new configuration
 
