@@ -184,7 +184,27 @@ We can think in the same way as [this repo](https://github.com/itzg/haproxy-gen)
 >
 > Also provide the output of `docker ps` in a log file. At least one file is expected. You can provide one output per step of your experimentation according to your screenshots.
 
+![](doc/task6/ha_without_nodes.png)
 
+> HAProxy initial state without any nodes started
+
+![](doc/task6/ha_with_s1_n_s2.png)
+
+> HAProxy with s1 and s2 started
+
+![](doc/task6/ha_with_extra_nodes.png)
+
+> HAProxy with extra nodes started
+
+| Stopped node detected          | Stopped node not detected                 |
+| ------------------------------ | ----------------------------------------- |
+| ![](doc/task6/ha_rem_node.png) | ![](doc/task6/ha_node_not_responding.png) |
+
+> HAProxy after stopping a node
+
+![](doc/task6/ha_reloading.png)
+
+> HAProxy while it's updating
 
 > Give your own feelings about the final solution. Propose improvements or ways to do the things differently. If any, provide references to your readings for the improvements.
 
