@@ -208,6 +208,12 @@ We can think in the same way as [this repo](https://github.com/itzg/haproxy-gen)
 
 > Give your own feelings about the final solution. Propose improvements or ways to do the things differently. If any, provide references to your readings for the improvements.
 
+This final works well, it's reactive to update the configuration when a new node is added and/or a node is removed. The thing is that we feel this solution seems "hacky". But after some research, we've saw that this solution seems to be a standard.
 
+While we were performing our research, we've discovered [Ansible](https://www.ansible.com). Ansible is a tool to help automate, as they say, `all the things`. And one of these things, is [configuration management](https://www.ansible.com/use-cases/configuration-management). Even though we haven't tested Ansible, we think that it might be better to use it to handle the configuration management.
+
+> Note: As we stated, we haven't tried to setup HAProxy with Ansible, so we don't know if it will work when using Docker containers.
+
+Here's an article we've found on setting up HAProxy with Ansible: [https://medium.com/swlh/configuring-haproxy-with-ansible-roles-on-aws-197806c996e](https://medium.com/swlh/configuring-haproxy-with-ansible-roles-on-aws-197806c996e)
 
 > (Optional:) Present a live demo where you add and remove a backend container.

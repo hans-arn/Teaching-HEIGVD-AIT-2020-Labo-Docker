@@ -1,0 +1,4 @@
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                                    NAMES
+7ce05dd9fe96        lab04_webapp2       "/init"                  20 hours ago        Up 5 seconds        7373/tcp, 7946/tcp, 0.0.0.0:4001->3000/tcp                                               s2
+3bab74f9b783        lab04_webapp1       "/init"                  20 hours ago        Up 5 seconds        7373/tcp, 7946/tcp, 0.0.0.0:4000->3000/tcp                                               s1
+a66685fd5a1f        lab04_haproxy       "/init"                  20 hours ago        Up 2 minutes        0.0.0.0:80->80/tcp, 7373/tcp, 0.0.0.0:1936->1936/tcp, 0.0.0.0:9999->9999/tcp, 7946/tcp   ha
