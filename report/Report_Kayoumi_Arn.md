@@ -217,3 +217,5 @@ While we were performing our research, we've discovered [Ansible](https://www.an
 Here's an article we've found on setting up HAProxy with Ansible: [https://medium.com/swlh/configuring-haproxy-with-ansible-roles-on-aws-197806c996e](https://medium.com/swlh/configuring-haproxy-with-ansible-roles-on-aws-197806c996e)
 
 > (Optional:) Present a live demo where you add and remove a backend container.
+
+![](doc/task6/demo.gif)
